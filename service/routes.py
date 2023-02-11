@@ -69,9 +69,8 @@ def get_all_accounts():
     app.logger.info("Request to retrieve all accounts")
     accounts = Account.all()
     accounts_serialize = [ account.serialize() for account in accounts]
-    if len(accounts) == 0:
-        return accounts_serialize, status.HTTP_200_OK
-    return accounts_serialize, status.HTTP_200_OK
+
+    return jsonify(accounts_serialize), status.HTTP_200_OK
 
 
 ######################################################################
@@ -127,6 +126,7 @@ def delete_account(account_id):
 
     account = Account.find(account_id)
     if account:
+        account.delete()
         return "", status.HTTP_204_NO_CONTENT
 
     
