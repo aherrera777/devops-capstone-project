@@ -157,8 +157,7 @@ class TestAccountService(TestCase):
         self.assertEqual(len(data), 0)
 
     def test_update_account(self):
-        """It should update a single Account"""
-        
+        """It should update a single Account"""        
         # create an Account to update
         test_account = AccountFactory()
         resp = self.client.post(BASE_URL, json=test_account.serialize())
@@ -191,7 +190,6 @@ class TestAccountService(TestCase):
         )
         self.assertEqual(resp.status_code, status.HTTP_204_NO_CONTENT)
 
-    
     def test_security_headers(self):
         """It should return security headers"""
         response = self.client.get('/', environ_overrides=HTTPS_ENVIRON)
@@ -212,10 +210,7 @@ class TestAccountService(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # Check for the CORS header
         self.assertEqual(response.headers.get('Access-Control-Allow-Origin'), '*')
-
-    
-
-        
+                
 
 
 
